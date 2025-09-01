@@ -33,7 +33,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <section class="bg-blue-50 px-4 py-10">
+    <section class="bg-blue-50/50 px-4 py-10">
         <div class="container-xl lg:container m-auto">
             <h2 class="text-3xl font-extrabold text-green-800 mb-6 text-center">
                 Browse Jobs

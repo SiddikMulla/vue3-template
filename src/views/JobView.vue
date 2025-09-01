@@ -3,6 +3,7 @@ import { reactive, onMounted } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import axios from 'axios';
+import BackButton from '@/components/BackButton.vue';
 
 const route = useRoute();
 
@@ -26,6 +27,7 @@ onMounted(async () => {
 </script>
 
 <template>
+    <BackButton />
     <section v-if="!state.isLoading" class="bg-green-50 min-h-screen py-10 px-6">
         <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-[70%_30%] gap-6">
@@ -35,8 +37,8 @@ onMounted(async () => {
                     <div class="bg-white p-6 rounded-2xl shadow-md text-center md:text-left">
                         <div class="text-gray-500 mb-2">{{ state.job.type }}</div>
                         <h1 class="text-3xl font-bold mb-3">{{ state.job.title }}</h1>
-                        <div class="flex items-center justify-center md:justify-start text-orange-700">
-                            <i class="fa-solid fa-location-dot mr-2"></i>
+                        <div class="flex items-center justify-center md:justify-start text-orange-800">
+                            <i class="pi pi-map-marker mr-2"></i>
                             <p>{{ state.job.location }}</p>
                         </div>
                     </div>
@@ -86,7 +88,7 @@ onMounted(async () => {
                             Edit Job
                         </RouterLink>
                         <button
-                            class="block w-full mt-4 bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full">
+                            class="block w-full mt-4 bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
                             Delete Job
                         </button>
                     </div>
