@@ -1,18 +1,28 @@
 <script setup>
 import { reactive, onMounted } from 'vue';
-import { useRoute, RouterLink } from 'vue-router';
+import { useRoute, RouterLink, useRouter } from 'vue-router';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import axios from 'axios';
 import BackButton from '@/components/BackButton.vue';
 
 const route = useRoute();
-
+const router = useRouter();
 const jobId = route.params.id;
 
 const state = reactive({
     job: {},
     isLoading: true
 })
+
+const deleteJob = async () => {
+    try {
+        await axios.delete(`http://localhost:5000/jobs/${jobId}`)
+        alert('deleted')
+        router.push('/jobs')
+    } catch (error) {
+        console.error('error:', error);
+    }
+}
 
 onMounted(async () => {
     try {
@@ -83,11 +93,11 @@ onMounted(async () => {
                     <!-- Manage Job -->
                     <div class="bg-white p-6 rounded-2xl shadow-md">
                         <h3 class="text-xl font-bold mb-4">Manage Job</h3>
-                        <RouterLink :to="`/jobs/edit/${state.job.id}`"
+                        <RouterLink :to="`/job/edit/${state.job.id}`"
                             class="block w-full text-center bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
                             Edit Job
                         </RouterLink>
-                        <button
+                        <button @click="deleteJob"
                             class="block w-full mt-4 bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
                             Delete Job
                         </button>
