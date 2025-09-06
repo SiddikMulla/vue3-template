@@ -2,7 +2,6 @@
 import router from '@/router';
 import axios from 'axios';
 import { reactive, onMounted } from 'vue';
-import { useToast } from 'vue-toastification';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
